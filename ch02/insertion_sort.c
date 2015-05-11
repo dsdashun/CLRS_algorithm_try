@@ -50,8 +50,8 @@ int prepareData(double **pDataArray, size_t *pSize){
     while (fgets(inputBuffer, 64, stdin)){
         if (n>=maxSize){
             /* double the max size*/
-            maxSize << 1;
-            if ((*pDataArray = realloc(*pDataArray,maxSize)) == NULL){
+            maxSize = maxSize << 1;
+            if ((*pDataArray = realloc(*pDataArray,maxSize * sizeof(double))) == NULL){
                 perror("re-alloc memory failed");
                 exit(-1);
             }
@@ -77,5 +77,6 @@ int main(int argc, char *argv[]){
     else {
         printf("Sort incorrect!\n");
     }
+    free(testData);
     return 0;
 }
