@@ -26,3 +26,13 @@ int prepareDoubleArray(double **pDataArray, size_t *pSize){
     *pSize = n;
     return 1;
 }
+
+void dumpDoubleArray(double data[], size_t n){
+    size_t i;
+    printf("[ ");
+    for (i=0; i<n; i++){
+        printf("%f, ", data[i]);
+    }
+    printf(" ]\n");
+}
+
