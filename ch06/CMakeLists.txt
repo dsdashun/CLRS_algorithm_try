@@ -19,6 +19,12 @@ add_executable (
     ../lib/prepare_data_helper.c
     ../lib/sort_data_helper.c
 )
+add_executable (
+    merge_sorted_data
+    merge_sorted_data.c
+    ../lib/prepare_data_helper.c
+)
+
 
 target_link_libraries (
     heap_sort_test
@@ -26,5 +32,9 @@ target_link_libraries (
 )
 target_link_libraries (
     test_heap
+    heap
+)
+target_link_libraries (
+    merge_sorted_data
     heap
 )
