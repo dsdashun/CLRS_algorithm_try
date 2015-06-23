@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "heap/max_heap.h"
 #include "heap_sort.h"
 
 void heapSort(double testData[], int testDataNum){
