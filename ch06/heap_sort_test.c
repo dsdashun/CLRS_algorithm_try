@@ -3,7 +3,6 @@
 #include "include/sort_data_helper.h"
 #include "heap_sort.h"
 
-//double testData[] = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1};
 //double testData[] = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
 //int testDataNum = 10;
 double *testData;

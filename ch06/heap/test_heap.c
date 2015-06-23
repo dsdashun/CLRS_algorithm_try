@@ -3,6 +3,7 @@
 #include "include/prepare_data_helper.h"
 #include "max_heap.h"
 #include "min_heap.h"
+#include "heap.h"
 
 int main(int argc, char *argv[]){
     double testData[] = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
@@ -10,26 +11,31 @@ int main(int argc, char *argv[]){
     int testDataNum = 10;
     double maxValue;
     Heap_t aMaxHeap, aMinHeap;
+    HeapElem_t *pHeapData, *pHeapData2, newElem;
 
     dumpDoubleArray(testData, testDataNum);
-    aMaxHeap = buildMaxHeap(testData, testDataNum);
-    dumpDoubleArray(aMaxHeap.pData, aMaxHeap.heapSize);
-    insertMaxHeapElem(&aMaxHeap, 13);
-    dumpDoubleArray(aMaxHeap.pData, aMaxHeap.heapSize);
-    maxValue = extractMax(&aMaxHeap);
+    pHeapData = generateHeapDataByKeyList(testData, testDataNum);
+    aMaxHeap = buildMaxHeap(pHeapData, testDataNum);
+    dumpHeap(&aMaxHeap);
+    newElem.key=13;
+    insertMaxHeapElem(&aMaxHeap, newElem);
+    dumpHeap(&aMaxHeap);
+    maxValue = extractMax(&aMaxHeap).key;
     printf("Max data in heap is: %f\n", maxValue);
-    dumpDoubleArray(aMaxHeap.pData, aMaxHeap.heapSize);
+    dumpHeap(&aMaxHeap);
     removeMaxHeapElem(&aMaxHeap, 3);
-    dumpDoubleArray(aMaxHeap.pData, aMaxHeap.heapSize);
+    dumpHeap(&aMaxHeap);
 
-    aMinHeap = buildMinHeap(testData2, testDataNum);
-    dumpDoubleArray(aMinHeap.pData, aMinHeap.heapSize);
-    insertMinHeapElem(&aMinHeap, 2.5);
-    dumpDoubleArray(aMinHeap.pData, aMinHeap.heapSize);
+    pHeapData2 = generateHeapDataByKeyList(testData2, testDataNum);
+    aMinHeap = buildMinHeap(pHeapData2, testDataNum);
+    dumpHeap(&aMinHeap);
+    newElem.key=2.5;
+    insertMinHeapElem(&aMinHeap, newElem);
+    dumpHeap(&aMinHeap);
     extractMin(&aMinHeap);
-    dumpDoubleArray(aMinHeap.pData, aMinHeap.heapSize);
+    dumpHeap(&aMinHeap);
     removeMinHeapElem(&aMinHeap, 3);
-    dumpDoubleArray(aMinHeap.pData, aMinHeap.heapSize);
+    dumpHeap(&aMinHeap);
 
     return 0;
 }
