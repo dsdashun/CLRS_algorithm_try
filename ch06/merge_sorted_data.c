@@ -10,13 +10,13 @@ void merge_k_sorted_arrays(double *arrayList[], int lengthList[], int k, double 
         int currentIndex;
         int arrayNum;
     } ArrayInfo_t;
-    HeapElem_t *arrayHeadData, *pMinElem;
+    SetElem_t *arrayHeadData, *pMinElem;
     double minValue;
     int i;
     Heap_t arrayHeadHeap;
     ArrayInfo_t *arrayInfoList, *pRootArrayInfo;
 
-    arrayHeadData = calloc(k, sizeof(HeapElem_t));
+    arrayHeadData = calloc(k, sizeof(SetElem_t));
     arrayInfoList = calloc(k, sizeof(ArrayInfo_t));
 
     for (i=0; i<k; i++){
@@ -24,14 +24,14 @@ void merge_k_sorted_arrays(double *arrayList[], int lengthList[], int k, double 
         arrayInfoList[i].currentIndex = 0;
         arrayInfoList[i].arrayNum = lengthList[i];
 
-        arrayHeadData[i].key = arrayList[i][0];
+        arrayHeadData[i].key.doubleKey = arrayList[i][0];
         arrayHeadData[i].pHandle = arrayInfoList+i;
     }
     arrayHeadHeap = buildMinHeap(arrayHeadData, k);
     i = 0;
     while (arrayHeadHeap.heapSize > 0){
         pMinElem = getMin(&arrayHeadHeap);
-        resultArray[i] = pMinElem->key;
+        resultArray[i] = pMinElem->key.doubleKey;
         pRootArrayInfo = (ArrayInfo_t *)(pMinElem->pHandle);
 
         (pRootArrayInfo->pData)++;
@@ -43,7 +43,7 @@ void merge_k_sorted_arrays(double *arrayList[], int lengthList[], int k, double 
         }
         else {
             //extract the next value
-            pMinElem->key = pRootArrayInfo->pData[0];
+            pMinElem->key.doubleKey = pRootArrayInfo->pData[0];
             minHeapify(&arrayHeadHeap, 0);
         }
         i++;

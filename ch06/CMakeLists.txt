@@ -4,6 +4,7 @@ add_library (
     heap/heap.c
     heap/max_heap.c
     heap/min_heap.c
+    ../lib/set_element.c
 )
 
 add_executable (
