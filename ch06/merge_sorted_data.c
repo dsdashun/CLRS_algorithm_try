@@ -10,7 +10,7 @@ void merge_k_sorted_arrays(double *arrayList[], int lengthList[], int k, double 
         int currentIndex;
         int arrayNum;
     } ArrayInfo_t;
-    HeapElem_t *arrayHeadData;
+    HeapElem_t *arrayHeadData, *pMinElem;
     double minValue;
     int i;
     Heap_t arrayHeadHeap;
@@ -30,8 +30,9 @@ void merge_k_sorted_arrays(double *arrayList[], int lengthList[], int k, double 
     arrayHeadHeap = buildMinHeap(arrayHeadData, k);
     i = 0;
     while (arrayHeadHeap.heapSize > 0){
-        resultArray[i] = getMin(&arrayHeadHeap).key;
-        pRootArrayInfo = (ArrayInfo_t *)(arrayHeadHeap.pData[0].pHandle);
+        pMinElem = getMin(&arrayHeadHeap);
+        resultArray[i] = pMinElem->key;
+        pRootArrayInfo = (ArrayInfo_t *)(pMinElem->pHandle);
 
         (pRootArrayInfo->pData)++;
         (pRootArrayInfo->currentIndex)++;
@@ -42,7 +43,7 @@ void merge_k_sorted_arrays(double *arrayList[], int lengthList[], int k, double 
         }
         else {
             //extract the next value
-            arrayHeadHeap.pData[0].key = pRootArrayInfo->pData[0];
+            pMinElem->key = pRootArrayInfo->pData[0];
             minHeapify(&arrayHeadHeap, 0);
         }
         i++;

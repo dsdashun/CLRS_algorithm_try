@@ -65,11 +65,11 @@ int getLargestAmongChild(Heap_t *pHeap, int i){
     return largestIndex;
 }
 
-HeapElem_t getMax(Heap_t *pHeap){
+HeapElem_t *getMax(Heap_t *pHeap){
     if (pHeap->heapSize <= 0){
-        return errorElem;
+        return NULL;
     }
-    return pHeap->pData[0];
+    return pHeap->pData;
 }
 
 HeapElem_t extractMax(Heap_t *pHeap){

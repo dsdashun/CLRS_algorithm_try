@@ -49,11 +49,11 @@ int getSmallestAmongChild(Heap_t *pHeap, int i){
     return smallestIndex;
 }
 
-HeapElem_t getMin(Heap_t *pHeap){
+HeapElem_t *getMin(Heap_t *pHeap){
     if (pHeap->heapSize <= 0){
-        return errorElem;
+        return NULL;
     }
-    return pHeap->pData[0];
+    return pHeap->pData;
 }
 
 HeapElem_t extractMin(Heap_t *pHeap){
