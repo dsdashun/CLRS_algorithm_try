@@ -3,6 +3,7 @@ add_library (
     STATIC
     stack.c
     queue.c
+    double_linked_list.c
     ../lib/set_element.c
 )
 
