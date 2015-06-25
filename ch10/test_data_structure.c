@@ -2,6 +2,7 @@
 #include "stack.h"
 #include "queue.h"
 #include "double_linked_list.h"
+#include "singly_linked_list.h"
 
 void testStack(){
     Stack_t aStack;
@@ -114,8 +115,48 @@ void testDoubleLinkedList(){
     dumpDoubleLinkedList(aLinkedList);
 }
 
+void testSinglyLinkedList(){
+    SetElem_t anElement;
+    double key;
+    SinglyLinkedList_t aLinkedList = NULL;
+    SinglyLinkedListElem_t *pListElem;
+    anElement.key.doubleKey = 1;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    anElement.key.doubleKey = 2;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    anElement.key.doubleKey = 4;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    pListElem = singlyLinkedList_search(aLinkedList, 3);
+    printf("0x%x\n", pListElem);
+    pListElem = singlyLinkedList_search(aLinkedList, 2);
+    printf("0x%x\n", pListElem);
+    singlyLinkedList_delete(&aLinkedList, pListElem);
+    singlyLinkedList_dump(aLinkedList);
+    pListElem = singlyLinkedList_search(aLinkedList, 4);
+    singlyLinkedList_delete(&aLinkedList, pListElem);
+    singlyLinkedList_dump(aLinkedList);
+    anElement.key.doubleKey = 2;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    anElement.key.doubleKey = 3;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    anElement.key.doubleKey = 4;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    anElement.key.doubleKey = 5;
+    singlyLinkedList_insert(&aLinkedList, &anElement);
+    singlyLinkedList_dump(aLinkedList);
+    singlyLinkedList_reverse(&aLinkedList);
+    singlyLinkedList_dump(aLinkedList);
+}
+
 int main(int argc, char *argv[]){
     //testStack();
     //testQueue();
-    testDoubleLinkedList();
+    //testDoubleLinkedList();
+    testSinglyLinkedList();
 }

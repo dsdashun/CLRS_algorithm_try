@@ -4,6 +4,7 @@ add_library (
     stack.c
     queue.c
     double_linked_list.c
+    singly_linked_list.c
     ../lib/set_element.c
 )
 
