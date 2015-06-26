@@ -1,8 +1,10 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include "stack.h"
 #include "queue.h"
 #include "double_linked_list.h"
 #include "singly_linked_list.h"
+#include "binary_tree.h"
 
 void testStack(){
     Stack_t aStack;
@@ -154,9 +156,36 @@ void testSinglyLinkedList(){
     singlyLinkedList_dump(aLinkedList);
 }
 
+void testBinaryTree(){
+    BinaryTree_t aTree;
+    BTNode_t *pNode, *pParentNode;
+    aTree = calloc(1, sizeof(BTNode_t));
+    pParentNode = aTree;
+    pNode = calloc(1, sizeof(BTNode_t));
+    pNode->data.key.doubleKey = 1;
+    pNode->parent = pParentNode;
+    pParentNode->leftChild = pNode;
+    pNode = calloc(1, sizeof(BTNode_t));
+    pNode->data.key.doubleKey = 2;
+    pNode->parent = pParentNode;
+    pParentNode->rightChild = pNode;
+    pParentNode = pNode->parent->leftChild;
+    pNode = calloc(1, sizeof(BTNode_t));
+    pNode->data.key.doubleKey = 3;
+    pNode->parent = pParentNode;
+    pParentNode->rightChild = pNode;
+    pParentNode = pParentNode->parent->rightChild;
+    pNode = calloc(1, sizeof(BTNode_t));
+    pNode->data.key.doubleKey = 4;
+    pNode->parent = pParentNode;
+    pParentNode->leftChild = pNode;
+    binaryTree_dump(aTree);
+}
+
 int main(int argc, char *argv[]){
     //testStack();
     //testQueue();
     //testDoubleLinkedList();
-    testSinglyLinkedList();
+    //testSinglyLinkedList();
+    testBinaryTree();
 }

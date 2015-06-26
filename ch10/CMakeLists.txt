@@ -5,6 +5,7 @@ add_library (
     queue.c
     double_linked_list.c
     singly_linked_list.c
+    binary_tree.c
     ../lib/set_element.c
 )
 
