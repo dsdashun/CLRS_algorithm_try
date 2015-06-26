@@ -94,27 +94,31 @@ void testQueue(){
 }
 
 void testDoubleLinkedList(){
-    SetElem_t anElement;
+    SetElem_t *pElem;
     double key;
     DoubleLinkedList_t aLinkedList;
     struct DoubleLinkedListElem *pLinkElem;
     aLinkedList = initDoubleLinkedList();
-    dumpDoubleLinkedList(aLinkedList);
-    anElement.key.doubleKey = 1;
-    doubleLinkedList_insert(aLinkedList, &anElement);
-    dumpDoubleLinkedList(aLinkedList);
-    anElement.key.doubleKey = 2;
-    doubleLinkedList_insert(aLinkedList, &anElement);
-    dumpDoubleLinkedList(aLinkedList);
-    anElement.key.doubleKey = 4;
-    doubleLinkedList_insert(aLinkedList, &anElement);
-    dumpDoubleLinkedList(aLinkedList);
+    dumpDoubleLinkedList_double(aLinkedList);
+    pElem = calloc(1, sizeof(SetElem_t));
+    pElem->key.doubleKey = 1;
+    doubleLinkedList_insert(aLinkedList, pElem);
+    dumpDoubleLinkedList_double(aLinkedList);
+    pElem = calloc(1, sizeof(SetElem_t));
+    pElem->key.doubleKey = 2;
+    doubleLinkedList_insert(aLinkedList, pElem);
+    dumpDoubleLinkedList_double(aLinkedList);
+    pElem = calloc(1, sizeof(SetElem_t));
+    pElem->key.doubleKey = 4;
+    doubleLinkedList_insert(aLinkedList, pElem);
+    dumpDoubleLinkedList_double(aLinkedList);
     pLinkElem = doubleLinkedList_search(aLinkedList, 3);
     printf("0x%x\n", pLinkElem);
     pLinkElem = doubleLinkedList_search(aLinkedList, 2);
     printf("0x%x\n", pLinkElem);
     doubleLinkedList_delete(aLinkedList, pLinkElem);
-    dumpDoubleLinkedList(aLinkedList);
+    free(pLinkElem);
+    dumpDoubleLinkedList_double(aLinkedList);
 }
 
 void testSinglyLinkedList(){
@@ -185,7 +189,7 @@ void testBinaryTree(){
 int main(int argc, char *argv[]){
     //testStack();
     //testQueue();
-    //testDoubleLinkedList();
+    testDoubleLinkedList();
     //testSinglyLinkedList();
-    testBinaryTree();
+    //testBinaryTree();
 }
